@@ -1,23 +1,23 @@
 const initial = [74, 83, 36, 22, 99, 4, 52, 18, 9, 7, 37, 58, 76, 80, 59]
 
-function selectionSort(items) {
-  if (items.length < 2) return items
+function selectionSort(arr) {
+  if (arr.length < 2) return arr
 
-  for (let i = 0; i < items.length; i += 1) {
-    let idxMin = i;
+  for (let i = 0; i < arr.length; i += 1) {
+    let lowest = i;
 
-    for (let j = i + 1; j < items.length; j += 1) {
-      if (items[j] < items[idxMin]) {
-        idxMin = j
+    for (let j = i + 1; j < arr.length; j += 1) {
+      if (arr[j] < arr[lowest]) {
+        lowest = j
       }
     }
 
-    const tmp = items[i]
-    items[i] = items[idxMin]
-    items[idxMin] = tmp
+    if (i !== lowest) {
+      [arr[i], arr[lowest]] = [arr[lowest], arr[i]]
+    }
   }
 
-  return items
+  return arr
 }
 
 console.log(selectionSort(initial))

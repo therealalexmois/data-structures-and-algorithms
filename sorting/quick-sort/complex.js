@@ -17,52 +17,46 @@
 
 const initial = [74, 83, 36, 22, 99, 4, 52, 18, 9, 7, 37, 58, 76, 80, 59]
 
-const quickSort = (items) => sort(items, 0, items.length - 1)
+const quickSort = (arr) => sort(arr, 0, arr.length - 1)
 
-function sort(items, left, right) {
-  if (items.length < 2) {
-    return items;
+function sort(arr, left, right) {
+  if (arr.length < 2) {
+    return arr;
   }
 
-  const index = partition(items, left, right)
+  const index = partition(arr, left, right)
 
   if (left < index - 1) {
-    sort(items, left, index - 1);
+    sort(arr, left, index - 1);
   }
 
   if (index < right) {
-    sort(items, index, right);
+    sort(arr, index, right);
   }
 
-  return items
+  return arr
 }
 
-function partition(items, left, right) {
-  const pivot = items[Math.floor((left + right) / 2)]
+function partition(arr, left, right) {
+  const pivot = arr[Math.floor((left + right) / 2)]
 
   while (left <= right) {
-    while (items[left] < pivot) {
+    while (arr[left] < pivot) {
       left += 1;
     }
 
-    while (items[right] > pivot) {
+    while (arr[right] > pivot) {
       right -= 1;
     }
 
     if (left <= right) {
-      swap(items, left, right);
+      [arr[left], arr[right]] = [arr[right], arr[left]]
       left += 1;
       right -= 1;
     }
   }
 
   return left
-}
-
-function swap(items, i, j) {
-  const tmp = items[i]
-  items[i] = items[j]
-  items[j] = tmp
 }
 
 console.log(quickSort(initial))
