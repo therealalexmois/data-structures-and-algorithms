@@ -67,19 +67,21 @@ class LinkedList {
   removeAt(index) {
     if (this.head === null) {
       return undefined;
-    } else if (index === 0 || this.head.next === null) {
-      return remove();
-    } else {
-      let current = this.head;
-      while (current.next.next !== null && index > 0) {
-        current = current.next;
-        index = index - 1;
-      }
-
-      const value = current.value;
-      current.next = current.next.next;
-
-      return value;
     }
+
+    if (index === 0 || this.head.next === null) {
+      return remove();
+    }
+
+    let current = this.head;
+    while (current.next.next !== null && index > 0) {
+      current = current.next;
+      index = index - 1;
+    }
+
+    const value = current.value;
+    current.next = current.next.next;
+
+    return value;
   }
 }
